@@ -54,7 +54,7 @@ pub async fn image(path_str: &str) -> HandlerResult {
         match ext.to_str().unwrap() {
             "ico" => {
                 let mut file =
-                    File::open("assets/images/favicon.ico").expect("Should open icon file");
+                    File::open("src/assets/images/favicon.ico").expect("Should open icon file");
                 let mut buf = Vec::new();
                 file.read_to_end(&mut buf).expect("Should read icon file");
                 bytes_handler(&buf, "image/x-icon", None).await
