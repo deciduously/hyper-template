@@ -1,0 +1,29 @@
+[package]
+authors = ["Ben Lovy <ben@deciduously.com>"]
+edition = "2018"
+name = "hyper-template"
+version = "0.1.0"
+description = "Rust/Hyper template application"
+repository = "https://github.com/deciduously/hyper-template"
+readme = "README.md"
+keywords = ["static", "hyper", "askama", "website"]
+license = "BSD-3-Clause"
+
+[dependencies]
+askama = "0.9"
+flate2 = "1.0"
+hyper = "0.13"
+lazy_static = "1.4"
+log = "0.4"
+pretty_env_logger = "0.4"
+serde = "1.0"
+serde_derive = "1.0"
+structopt = "0.3"
+toml = "0.5"
+
+[dependencies.tokio]
+features = ["full"]
+version = "0.2"
+
+[dev-dependencies]
+pretty_assertions = "0.6"

@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}{% endblock %} - SITE NAME</title>
+  <meta name="Description" content="Site description" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  {# this must be a 192px square PNG #}
+  {# <link rel="apple-touch-icon" href="/favicon.svg" /> #}
+  <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="manifest" href="/manifest.json" />
+</head>
+
+<body class="bg-gray-100">
+  <header class=""></header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="text-xs italic">
+    © YEAR AUTHOR - <a href="https://github.com/deciduously/" target="_blank"
+      rel="noreferrer">source</a>
+  </footer>
+</body>
+
+</html>
