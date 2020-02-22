@@ -18,5 +18,6 @@ RUN cargo install --target x86_64-unknown-linux-musl --path .
 # Copy the statically-linked binary into a scratch container.
 FROM scratch
 COPY --from=builder /usr/local/cargo/bin/hyper-template .
+COPY images ./images
 USER 1000
 CMD ["./hyper-template", "-a", "0.0.0.0", "-p", "8080"]
