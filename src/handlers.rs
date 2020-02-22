@@ -54,7 +54,7 @@ pub async fn image(path_str: &str) -> HandlerResult {
         match ext.to_str().unwrap() {
             "ico" => {
                 let mut file =
-                    File::open("src/assets/images/favicon.ico").expect("Should open icon file");
+                    File::open("images/favicon.ico").expect("Should open icon file");
                 let mut buf = Vec::new();
                 file.read_to_end(&mut buf).expect("Should read icon file");
                 bytes_handler(&buf, "image/x-icon", None).await
@@ -62,7 +62,7 @@ pub async fn image(path_str: &str) -> HandlerResult {
             "svg" => {
                 // build the response
                 let xml = match file_name {
-                    // "dev-badge.svg" => include_str!("assets/images/dev-badge.svg"), // for example
+                    // "dev-badge.svg" => include_str!("assets/svg/dev-badge.svg"), // for example
                     _ => "",
                 };
                 string_handler(xml, "image/svg+xml", None).await
