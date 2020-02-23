@@ -54,7 +54,7 @@ pub async fn image(path_str: &str) -> HandlerResult {
         match ext.to_str().unwrap() {
             "ico" => {
                 let mut file =
-                    File::open("src/assets/images/favicon.ico").expect("Should open icon file");
+                    File::open("images/favicon.ico").expect("Should open icon file");
                 let mut buf = Vec::new();
                 file.read_to_end(&mut buf).expect("Should read icon file");
                 bytes_handler(&buf, "image/x-icon", None).await
@@ -62,7 +62,7 @@ pub async fn image(path_str: &str) -> HandlerResult {
             "svg" => {
                 // build the response
                 let xml = match file_name {
-                    // "dev-badge.svg" => include_str!("assets/images/dev-badge.svg"), // for example
+                    // "dev-badge.svg" => include_str!("assets/svg/dev-badge.svg"), // for example
                     _ => "",
                 };
                 string_handler(xml, "image/svg+xml", None).await
@@ -84,4 +84,32 @@ pub async fn four_oh_four() -> HandlerResult {
     let template = FourOhFourTemplate::default();
     let html = template.render().expect("Should render markup");
     string_handler(&html, "text/html", Some(StatusCode::NOT_FOUND)).await
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use flate2::read::ZlibDecoder;
+    use hyper::body;
+    use select::{
+        document::Document,
+        predicate::{Name, Predicate},
+    };
+    use tokio::runtime::Runtime;
+
+    #[test]
+    fn test_four_oh_four() {
+        let mut rt = Runtime::new().unwrap();
+        let response = rt.block_on(four_oh_four()).unwrap();
+        let bytes = rt.block_on(body::to_bytes(response)).unwrap();
+        let mut d = ZlibDecoder::new(&bytes[..]);
+        let mut html = String::new();
+        d.read_to_string(&mut html).unwrap();
+        let document = Document::from(html.as_str());
+        let node = document
+            .find(Name("main").descendant(Name("h1")))
+            .next()
+            .unwrap();
+        assert_eq!(node.text(), "NOT FOUND!");
+    }
 }

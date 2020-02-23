@@ -2,7 +2,7 @@
 authors = ["Ben Lovy <ben@deciduously.com>"]
 edition = "2018"
 name = "hyper-template"
-version = "0.1.0"
+version = "0.1.1"
 description = "Rust/Hyper template application"
 repository = "https://github.com/deciduously/hyper-template"
 readme = "README.md"
@@ -27,3 +27,4 @@ version = "0.2"
 
 [dev-dependencies]
 pretty_assertions = "0.6"
+select = "0.4"
