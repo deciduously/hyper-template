@@ -23,7 +23,7 @@ toml = "0.5"
 
 [dependencies.tokio]
 features = ["full"]
-version = "0.2"
+version = "1.8"
 
 [dev-dependencies]
 pretty_assertions = "0.6"
