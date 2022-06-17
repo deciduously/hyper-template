@@ -12,7 +12,7 @@ license = "BSD-3-Clause"
 [dependencies]
 askama = "0.9"
 flate2 = "1.0"
-hyper = "0.13"
+hyper = "0.14"
 lazy_static = "1.4"
 log = "0.4"
 pretty_env_logger = "0.4"
